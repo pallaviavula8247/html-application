@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College Timetable</title>
+  <meta name="description" content="Responsive, accessible and professional college timetable (Monday–Saturday, 7 periods)." />
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:rgba(255,255,255,0.9);
+      --muted:#6b7280;
+      --accent:#334155;
+      --primary:#0ea5a4;
+      --period:rgba(238,242,255,0.9);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:url('https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size:cover;
+      padding:32px;
+      color:var(--accent);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      background:var(--card);
+      border-radius:14px;
+      padding:24px;
+      box-shadow:0 6px 20px rgba(16,24,40,0.3);
+      border:1px solid rgba(255,255,255,0.2);
+      backdrop-filter:blur(8px);
+    }
+
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+
+    .brand{
+      display:flex;align-items:center;gap:14px
+    }
+    .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#0369a1);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(2,6,23,0.2);
+    }
+    h1{font-size:18px;margin:0}
+    p.sub{margin:0;color:var(--muted);font-size:13px}
+
+    .controls{display:flex;gap:12px;align-items:center}
+    .btn{padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.4);font-weight:600;cursor:pointer;color:white;backdrop-filter:blur(4px)}
+    .btn.primary{background:var(--primary);color:white;border:0}
+
+    .timetable-wrap{overflow:auto}
+    table.timetable{
+      width:100%;
+      border-collapse:collapse;
+      min-width:900px;
+      font-size:14px;
+    }
+
+    thead th{
+      position:sticky;top:0;background:rgba(255,255,255,0.9);
+      padding:14px 12px;text-align:left;border-bottom:2px solid rgba(255,255,255,0.2);font-weight:700;color:var(--accent)
+    }
+
+    tbody td{
+      padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.15);vertical-align:top;
+    }
+
+    .period{
+      display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:10px;background:var(--period);border:1px solid rgba(255,255,255,0.1);
+    }
+    .course{font-weight:700}
+    .meta{font-size:12px;color:var(--muted)}
+
+    td.timecell{width:120px;background:rgba(255,255,255,0.85);font-weight:700;color:var(--accent)}
+
+    tbody tr:hover td{background:rgba(14,165,164,0.05);}
+
+    @media (max-width:880px){
+      .container{padding:18px}
+      thead{display:none}
+      tbody td{display:block;width:100%}
+      td.timecell{display:flex;gap:8px;align-items:center;padding:12px 0;font-size:13px}
+      .period{padding:10px}
+    }
+
+    footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px;color:white;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div class="brand">
+        <div class="logo">CT</div>
+        <div>
+          <h1>College Timetable</h1>
+          <p class="sub">Professional layout with Robo background</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="timetable-wrap">
+      <table class="timetable">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="timecell">08:00 – 08:45</td>
+            <td><div class="period"><div class="course">Mathematics</div><div class="meta">A101</div></div></td>
+            <td><div class="period"><div class="course">Physics</div><div class="meta">Lab 2</div></div></td>
+            <td><div class="period"><div class="course">Chemistry</div><div class="meta">A204</div></div></td>
+            <td><div class="period"><div class="course">Engineering Graphics</div><div class="meta">B105</div></div></td>
+            <td><div class="period"><div class="course">Electronics</div><div class="meta">C109</div></div></td>
+            <td><div class="period"><div class="course">Open Slot</div></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <div>Generated: <span id="genDate"></span></div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('genDate').textContent = new Date().toLocaleString();
+  </script>
+</body>
+</html>
